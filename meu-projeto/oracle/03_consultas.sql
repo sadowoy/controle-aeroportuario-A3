@@ -11,7 +11,7 @@ FROM modelo_aeronave m
 JOIN aeronave a ON m.modelo_id = a.modelo_id
 JOIN voo v ON a.aeronave_id = v.aeronave_id
 WHERE v.status = 'AGENDADO'
-GROUP BY m.nome
+GROUP BY m.nome, m.mtow_kg
 HAVING m.mtow_kg > 75000;
 
 -- Q03 (Window Function - RANK): Ranking das pistas mais utilizadas para voos (pistas com o mesmo numero de voos recebem a mesma posicao)

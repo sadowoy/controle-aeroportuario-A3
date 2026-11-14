@@ -3,7 +3,7 @@ set -euo pipefail
 
 echo "Iniciando criacao do banco Oracle..."
 
-for f in /scripts/oracle/01_ddl.sql /scripts/oracle/02_inserts.sql /scripts/oracle/03_consultas.sql /scripts/procedures/oracle_procedures.sql; do
+for f in /scripts/oracle/01_ddl.sql /scripts/oracle/02_inserts.sql /scripts/oracle/03_consultas.sql /scripts/procedures/oracle_procedures.sql /scripts/oracle/04_indices.sql; do
   echo "Executando $f..."
   
   # A correção está na variável de senha desta linha abaixo:
