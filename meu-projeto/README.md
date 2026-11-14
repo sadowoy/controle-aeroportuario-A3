@@ -14,7 +14,6 @@ meu-projeto/
 ├── DER/
 │   └── controle-patio.puml      # Diagrama Entidade-Relacionamento (PlantUML)
 ├── docker/
-│   ├── docker-compose.yml       # Orquestração do container Oracle XE 21c
 │   └── oracle-init.sh           # Script de inicialização automática do schema
 ├── oracle/
 │   ├── 01_ddl.sql               # Criação das 7 tabelas, PKs, FKs e CHECKs
@@ -25,6 +24,7 @@ meu-projeto/
 │   └── analise_indices.md       # Relatório comparativo EXPLAIN PLAN (Antes vs. Depois)
 ├── procedures/
 │   └── oracle_procedures.sql    # Procedures e Trigger de validação de MTOW
+├── docker-compose.yml           # Orquestração do container Oracle XE 21c
 └── README.md
 ```
 
@@ -48,10 +48,9 @@ O esquema relacional é composto por 7 entidades principais:
 ## Como Executar o Projeto
 
 ### 1. Subir o Banco de Dados Oracle (Docker)
-Acesse a pasta `docker/` e inicie o container. O script `oracle-init.sh` criará automaticamente as tabelas, dados iniciais, consultas, procedures, trigger e índices no Pluggable Database `XEPDB1`:
+Na pasta raiz do projeto (`meu-projeto/`), inicie o container. O script `docker/oracle-init.sh` criará automaticamente as tabelas, dados iniciais, consultas, procedures, trigger e índices no Pluggable Database `XEPDB1`:
 
 ```bash
-cd docker
 docker compose up -d --wait
 ```
 
@@ -68,7 +67,7 @@ docker exec -it bd_oracle sqlplus "usuario_lab/senha_lab@XEPDB1"
 ---
 
 ### 2. Executar a Aplicação Cliente (Python)
-Na pasta raiz (`meu-projeto/`), instale o driver oficial `oracledb` (modo *Thin*, sem necessidade de Oracle Instant Client) e execute a demonstração:
+Ainda na pasta raiz (`meu-projeto/`), instale o driver oficial `oracledb` (modo *Thin*, sem necessidade de Oracle Instant Client) e execute a demonstração:
 
 ```bash
 pip install -r app/requirements.txt
